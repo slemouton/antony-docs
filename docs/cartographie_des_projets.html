@@ -2,7 +2,7 @@
 <html>
 <head>
 	
-	<title>Projects GeoLocalisation</title>
+	<title>ElectroAcoustic Archiving Projects GeoLocalisation</title>
 
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -275,8 +275,8 @@ function put_marker(p,L){
 	Http.send();
 		result = Http.responseText;
 		a=JSON.parse(result)
-		console.log(p.Ville)
-L.marker([parseFloat(a[0].lat)+ (Math.random() - 0.5), parseFloat(a[0].lon)+ (Math.random() - 0.5)]).addTo(mymap)
+		//console.log(p.Ville)
+L.marker([parseFloat(a[0].lat)+ (0.1 * Math.random() - 0.05), parseFloat(a[0].lon)+ (0.1 * Math.random() - 0.05)]).addTo(mymap)
 .bindPopup("<b>"+p.Name + "</b><br/>" + p.Ville);
 }
 
@@ -289,7 +289,7 @@ L.marker([parseFloat(a[0].lat)+ (Math.random() - 0.5), parseFloat(a[0].lon)+ (Ma
 	Http.onreadystatechange=(e)=>{
 		result = Http.response;
 		a=JSON.parse(result)
-		console.log(p.Ville)
+		//console.log(p.Ville)
 L.marker([parseFloat(a[0].lat)+Math.random(), parseFloat(a[0].lon)+Math.random()],riseOnHover=true,title="Centre",opacity=0.1,draggable=true).addTo(mymap)
 .bindPopup("<b>"+p.Name + "</b><br/>" + p.Ville);
 	}
@@ -309,11 +309,14 @@ function get_projects(){
 
 var popup = L.popup();
 
-function onMapClick(e) {
+function onMapClick_popup(e) {
 	popup
 	.setLatLng(e.latlng)
 	.setContent("You clicked the map at " + e.latlng.toString())
 	.openOn(mymap);
+}
+
+function onMapClick(e) {
 }
 
 mymap.on('click', onMapClick);
